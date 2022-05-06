@@ -1,0 +1,53 @@
+version: '3'
+services:
+  mysql_db:
+    build:
+      context: .
+      dockerfile: ./database-conf/Dockerfile
+    labels:
+      - maintainer_compose=rahul.pandey
+    ports:
+      - 33333:3306/tcp
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - wordpress_volume_db_1:/var/lib/mysql
+    restart: on-failure
+    networks:
+      - wp_mysql_network
+  wp:
+    build:
+      context: .
+      dockerfile: ./docker-wordpress-conf/Dockerfile
+    labels:
+      - wp_version=5.9.1
+    volumes:
+      - ./wordpress-code/:/var/www/html/wordpress-code/
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql_db
+    networks:
+      - wp_mysql_network
+    environment:
+      WORDPRESS_DB_HOST: mysql_db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: wordpress_db
+
+networks:
+  wp_mysql_network:
+    external: false
+    driver: bridge
+
+volumes:
+  wordpress_volume_db_1: { }
+  
+
+
+    
+
+
+
+
+  
