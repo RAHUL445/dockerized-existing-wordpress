@@ -52,9 +52,12 @@ docker-compose down # to stop the services
 
 ## More to Know
 1. wp docker is using wp-config.docker.php file as wp-config.php file. coping wp-config.docker.php to wp-config.php
+1. wp admin username - rahul & password - rahul
+1. mysql username - root & password - root & db - wordpress_db
 ```shell
 docker network ls 
 docker network inspect [network_name] # to see network info
 docker volume ls
 docker volume inspect [volume_name] # to see details
 ```
+
