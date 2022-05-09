@@ -28,7 +28,7 @@ docker-compose build --no-cache # build image
 docker-compose up -d  # start container for one time setting
 docker ps # to list running containers
 # setting to be done, upload existing db(wordpress_db.sql) to the mysql server
-docker exec -it [container_name/id of mysql docker] setup_database_in_docker
+docker exec -it [container_name/id of mysql docker] setup_database_in_docker # to see the option list, 1. create_db 2. import_db to work ahead
 # setting wordpress domain name in siteurl and home in wp_options
 docker exec -it [container_name/id of wp docker] update_url http://localhost:8080
 # 8080 is default port for wordpress docker, change in docker-compose if you want
